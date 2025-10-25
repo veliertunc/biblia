@@ -1,3 +1,5 @@
+package dev.veliertunc.biblia.features.user
+
 import lombok.RequiredArgsConstructor
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.*

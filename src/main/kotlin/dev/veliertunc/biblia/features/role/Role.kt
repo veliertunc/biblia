@@ -1,3 +1,7 @@
+package dev.veliertunc.biblia.features.role
+
+import dev.veliertunc.biblia.core.BaseEntity
+
 import jakarta.persistence.*
 import lombok.NoArgsConstructor
 import lombok.AllArgsConstructor

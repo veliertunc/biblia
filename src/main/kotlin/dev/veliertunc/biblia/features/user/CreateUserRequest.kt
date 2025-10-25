@@ -1,3 +1,5 @@
+package dev.veliertunc.biblia.features.user
+
 data class CreateUserRequest(
     val username: String,
     val email: String,

@@ -1,3 +1,5 @@
+package dev.veliertunc.biblia.features.user
+
 import jakarta.persistence.EntityNotFoundException
 import lombok.RequiredArgsConstructor
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -57,11 +59,8 @@ class UserService(
     }
 
     private fun User.toResponse() = UserResponse(
-        id = this.id,
         username = this.username,
         email = this.email,
         enabled = this.enabled,
-        createdAt = this.createdAt,
-        updatedAt = this.updatedAt
     )
 }
