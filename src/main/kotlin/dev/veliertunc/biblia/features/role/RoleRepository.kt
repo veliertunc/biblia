@@ -3,5 +3,5 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface RoleRepository : JpaRepository<User, UUID> {
+interface RoleRepository : JpaRepository<Role, UUID> {
 }
