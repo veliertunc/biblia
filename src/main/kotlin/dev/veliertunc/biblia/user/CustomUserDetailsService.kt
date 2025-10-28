@@ -1,11 +1,9 @@
-package dev.veliertunc.biblia.features.user
+package dev.veliertunc.biblia.user
 
-import lombok.RequiredArgsConstructor
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.*
 import org.springframework.stereotype.Service
 
-@RequiredArgsConstructor
 @Service
 class CustomUserDetailsService(
     private val userRepository: UserRepository

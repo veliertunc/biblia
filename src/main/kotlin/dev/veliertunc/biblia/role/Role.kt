@@ -1,4 +1,4 @@
-package dev.veliertunc.biblia.features.role
+package dev.veliertunc.biblia.role
 
 import dev.veliertunc.biblia.core.BaseEntity
 

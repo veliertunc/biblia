@@ -1,7 +1,4 @@
-package dev.veliertunc.biblia.features.user
-
-import java.time.Instant
-import java.util.UUID
+package dev.veliertunc.biblia.user
 
 data class UserResponse(
     val username: String,

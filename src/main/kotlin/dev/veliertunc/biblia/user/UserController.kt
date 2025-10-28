@@ -1,4 +1,4 @@
-package dev.veliertunc.biblia.features.user
+package dev.veliertunc.biblia.user
 
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus

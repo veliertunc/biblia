@@ -1,4 +1,4 @@
-package dev.veliertunc.biblia.features.user
+package dev.veliertunc.biblia.user
 
 data class CreateUserRequest(
     val username: String,

@@ -44,3 +44,4 @@ out/
 
 ### Temporary ###
 .tmp/
+compose.yml
