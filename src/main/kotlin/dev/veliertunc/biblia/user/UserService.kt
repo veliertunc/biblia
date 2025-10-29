@@ -9,28 +9,27 @@ import java.util.*
 @Service
 class UserService(
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val userMapper: UserMapper
 ) {
 
     fun getAll(): List<UserResponse> =
-        userRepository.findAll().map { it.toResponse() }
+        userRepository.findAll().map { it.let(userMapper::toResponse) }
 
     fun getById(id: UUID): UserResponse =
         userRepository.findById(id)
             .orElseThrow { EntityNotFoundException("User not found") }
-            .toResponse()
+            .let(userMapper::toResponse)
 
     @Transactional
     fun create(req: CreateUserRequest): UserResponse {
         require(!userRepository.existsByUsername(req.username)) { "Username already taken" }
         require(!userRepository.existsByEmail(req.email)) { "Email already registered" }
 
-        val user = User(
-            username = req.username,
-            email = req.email,
-            passwordHash = passwordEncoder.encode(req.password)
-        )
-        return userRepository.save(user).toResponse()
+        val user = userMapper.fromCreateRequest(req)
+        user.passwordHash = passwordEncoder.encode(req.password)
+
+        return userRepository.save(user).let(userMapper::toResponse)
     }
 
     @Transactional
@@ -38,15 +37,11 @@ class UserService(
         val user = userRepository.findById(id)
             .orElseThrow { EntityNotFoundException("User not found") }
 
-        req.email?.let {
-            if (it != user.email && userRepository.existsByEmail(it))
-                throw IllegalArgumentException("Email already in use")
-            user.email = it
-        }
-        req.password?.let { user.passwordHash = passwordEncoder.encode(it) }
-        req.enabled?.let { user.enabled = it }
+        userMapper.updateEntityFromDto(req, user)
 
-        return userRepository.save(user).toResponse()
+        req.password?.let { user.passwordHash = passwordEncoder.encode(it) }
+
+        return userRepository.save(user).let(userMapper::toResponse)
     }
 
     @Transactional
@@ -56,9 +51,4 @@ class UserService(
         userRepository.deleteById(id)
     }
 
-    private fun User.toResponse() = UserResponse(
-        username = this.username,
-        email = this.email,
-        enabled = this.enabled,
-    )
 }
