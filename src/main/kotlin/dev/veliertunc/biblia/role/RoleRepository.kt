@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
 interface RoleRepository : JpaRepository<Role, UUID> {
+    fun findAllByName(name: String): List<Role>
 }

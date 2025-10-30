@@ -16,5 +16,5 @@ interface TagRepository : JpaRepository<Tag, UUID> {
 
     @Modifying
     @Transactional
-    fun deleteByNameIgnorecase(name: String): Long
+    fun deleteByNameIgnoreCase(name: String): Long
 }

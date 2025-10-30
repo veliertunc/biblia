@@ -1,16 +1,17 @@
-package dev.veliertunc.biblia.tag
+package dev.veliertunc.biblia.role
 
 import org.mapstruct.*
 
 @Mapper(componentModel = "spring")
-interface TagMapper {
-    fun toResponse(entity: Tag): TagResponse
+interface RoleMapper {
+
+    fun toResponse(entity: Role): RoleResponse
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    fun fromCreateRequest(req: CreateTagRequest): Tag
+    fun fromCreateRequest(req: CreateRoleRequest): Role
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    fun updateEntityFromDto(req: UpdateTagRequest, @MappingTarget entity: Tag)
+    fun updateEntityFromDto(req: UpdateRoleRequest, @MappingTarget entity: Role)
 }
