@@ -13,18 +13,22 @@ class UserController(
 ) {
 
     @GetMapping
-    fun list() = userService.getAll()
+    fun list() = userService.getAll().map { it.let(userService::toResponse) }
 
     @GetMapping("/{id}")
-    fun get(@PathVariable id: UUID) = userService.getById(id)
+    fun get(@PathVariable id: UUID) =
+        userService.getById(id).let(userService::toResponse)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody req: CreateUserRequest) = userService.create(req)
+    fun create(@RequestBody req: CreateUserRequest) =
+        userService.create(req).let(userService::toResponse)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: UUID, @RequestBody req: UpdateUserRequest) =
-        userService.update(id, req)
+    fun update(
+        @PathVariable id: UUID,
+        @RequestBody req: UpdateUserRequest
+    ) = userService.update(id, req).let(userService::toResponse)
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

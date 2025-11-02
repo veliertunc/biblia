@@ -1,9 +1,9 @@
-package dev.veliertunc.biblia.role
+package dev.veliertunc.biblia.entry
 
 import java.time.Instant
 import java.util.UUID
 
-data class RoleResponse(
+data class EntryResponse(
     val id: UUID,
     val createdAt: Instant,
     val updatedAt: Instant,

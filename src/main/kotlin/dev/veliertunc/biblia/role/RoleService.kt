@@ -16,29 +16,28 @@ class RoleService(
     private val roleMapper: RoleMapper
 ) {
 
-    fun getAll(): List<RoleResponse> =
-        roleRepo.findAll().map { it.let(roleMapper::toResponse) }
+    fun toResponse(role: Role) = roleMapper.toResponse(role)
 
-    fun getById(id: UUID): RoleResponse =
-        roleRepo.findById(id)
-            .orElseThrow { EntityNotFoundException("User $id not found") }
-            .let(roleMapper::toResponse)
+    fun getAll(): List<Role?> = roleRepo.findAll()
+
+    fun getById(id: UUID): Role? = roleRepo.findById(id)
+        .orElseThrow { EntityNotFoundException("User $id not found") }
 
     @Transactional
-    fun create(req: CreateRoleRequest): RoleResponse {
+    fun create(req: CreateRoleRequest): Role {
         val role = roleMapper.fromCreateRequest(req)
 
-        return roleRepo.save(role).let(roleMapper::toResponse)
+        return roleRepo.save(role)
     }
 
     @Transactional
-    fun update(id: UUID, req: UpdateRoleRequest): RoleResponse {
+    fun update(id: UUID, req: UpdateRoleRequest): Role {
         val role = roleRepo.findById(id)
             .orElseThrow { EntityNotFoundException("Role $id not found") }
 
         roleMapper.updateEntityFromDto(req, role)
 
-        return roleRepo.save(role).let(roleMapper::toResponse)
+        return roleRepo.save(role)
     }
 
     @Transactional
