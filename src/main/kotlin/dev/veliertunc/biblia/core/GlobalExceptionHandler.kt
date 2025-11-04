@@ -53,10 +53,10 @@ class GlobalExceptionHandler {
         var errors: MutableMap<String, String> = mutableMapOf()
 
         ex.bindingResult.fieldErrors.forEach { error ->
-            errors.put(error.field, error.defaultMessage)
+            errors[error.field] = error.defaultMessage ?: "No message";
         }
 
-        ex.return ResponseEntity(errors, HttpStatus.BAD_REQUEST)
+        return ResponseEntity(errors, HttpStatus.BAD_REQUEST)
     }
 
     // Fallback for any uncaught exceptions

@@ -8,6 +8,8 @@ import lombok.*
 
 @Entity
 @Table(name = "tags")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

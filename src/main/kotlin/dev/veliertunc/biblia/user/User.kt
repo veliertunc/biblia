@@ -4,12 +4,12 @@ import dev.veliertunc.biblia.core.BaseEntity
 import dev.veliertunc.biblia.role.Role
 
 import jakarta.persistence.*
-import lombok.NoArgsConstructor
-import lombok.AllArgsConstructor
-import lombok.Builder
+import lombok.*
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

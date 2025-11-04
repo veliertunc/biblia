@@ -10,16 +10,17 @@ abstract class BaseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    var id: UUID = UUID.randomUUID(),
+    var id: UUID? = null,
 
     @Column(nullable = false, updatable = false)
-    var createdAt: Instant = Instant.now(),
+    var createdAt: Instant? = null,
 
     @Column(nullable = false)
-    var updatedAt: Instant = Instant.now()
+    var updatedAt: Instant? = null
 ) {
     @PrePersist
     fun onCreate() {
+        id = UUID.randomUUID()
         createdAt = Instant.now()
         updatedAt = createdAt
     }

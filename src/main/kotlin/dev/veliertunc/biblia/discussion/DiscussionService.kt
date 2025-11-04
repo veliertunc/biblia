@@ -41,7 +41,7 @@ class DiscussionService(
         val discussion = discussionMapper.fromCreateRequest(req)
 
         // Resolve or create tags, then add them via the entity method
-        tagService.resolveOrCreateTags(req.tags).forEach { discussion.addTag(it) }
+        // tagService.resolveOrCreateTags(req.tags).forEach { discussion.addTag(it) }
 
         return discussionRepo.save(discussion).let(discussionMapper::toResponse)
     }

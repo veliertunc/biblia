@@ -2,7 +2,6 @@ package dev.veliertunc.biblia.discussion
 
 import dev.veliertunc.biblia.tag.Tag
 
-
 import org.mapstruct.*
 
 @Mapper(componentModel = "spring")

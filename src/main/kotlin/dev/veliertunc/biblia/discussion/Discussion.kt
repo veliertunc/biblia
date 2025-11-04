@@ -5,12 +5,12 @@ import dev.veliertunc.biblia.entry.Entry
 import dev.veliertunc.biblia.tag.Tag
 
 import jakarta.persistence.*
-import lombok.NoArgsConstructor
-import lombok.AllArgsConstructor
-import lombok.Builder
+import lombok.*
 
 @Entity
 @Table(name = "discussions")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

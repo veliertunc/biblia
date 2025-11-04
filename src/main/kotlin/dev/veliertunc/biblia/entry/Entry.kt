@@ -1,15 +1,15 @@
 package dev.veliertunc.biblia.entry
 
 import jakarta.persistence.*
-import lombok.NoArgsConstructor
-import lombok.AllArgsConstructor
-import lombok.Builder
+import lombok.*
 
 import dev.veliertunc.biblia.core.BaseEntity
 import dev.veliertunc.biblia.discussion.Discussion
 
 @Entity
 @Table(name = "entries")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

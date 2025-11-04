@@ -13,7 +13,7 @@ class UserController(
 ) {
 
     @GetMapping
-    fun list() = userService.getAll().map { it.let(userService::toResponse) }
+    fun list() = userService.getAll().map { it.let { user -> userService::toResponse } }
 
     @GetMapping("/{id}")
     fun get(@PathVariable id: UUID) =
